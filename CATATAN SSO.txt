@@ -1,0 +1,73 @@
+Cara membuat goggle sign in di flutter :
+- Pertama kita harus membuat project flutter terlebih dahulu
+
+package yang digunakan :
+- google_sign_in: ^5.3.3
+https://pub.dev/packages/google_sign_in
+
+
+integrasi ios :
+- buka file ios/Runner/Info.plist
+- tambahkan kode berikut :
+<!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
+<!-- Google Sign-in Section -->
+<key>CFBundleURLTypes</key>
+<array>
+	<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<!-- TODO Replace this value: -->
+			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+			<string>com.googleusercontent.apps.861823949799-vc35cprkp249096uujjn0vvnmcvjppkn</string>
+		</array>
+	</dict>
+</array>
+<!-- End of the Google Sign-in Section -->
+
+masukan fungsi berikut pada file main.dart :
+// variable global untuk menyimpan instance dari GoogleSignIn
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+
+- buat logintampilan 
+- Kedua kita harus membuat project di firebase console :
+- buat project baru
+- setting firebase authentication
+- lalu koneksikan project flutter dengan project firebase
+- SSH key harus di tambahkan pada project firebase :
+https://developers.google.com/android/guides/client-auth
+
+Contoh Generate by CLI :
+keytool -list -v -keystore "c:\Users\[USERPROFILE]\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+
+keytool -list -v -keystore "C:\Users\sanzcode\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+
+C:\Users\sanzcode\.android\debug.keystore
+
+keytool -list -v \
+-alias <your-key-name> -keystore <path-to-production-keystore>
+
+keytool -list -v \
+-alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+
+SHA1:
+B9:C3:B8:04:70:32:1B:86:AD:B8:E8:2A:23:83:CA:D3:70:C9:C7:E1
+
+SHA256:
+72:D2:E6:E1:05:3E:F4:17:0D:4E:03:8F:66:8A:8A:A9:F3:FF:32:D0:4B:95:A4:C2:00:36:4B:14:C5:83:00:2F
+
+- download google-services.json
+- letakkan file google-services.json pada folder android/app
+- ikutin langkah yang ada pada firebase console
+- tambahkan kode berikut pada file android/build.gradle
+- tambahkan kode berikut pada file android/app/build.gradle
+
+
+
+ekox69@gmail.com
